@@ -1,14 +1,43 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import FlipCard from "../FlipCard/FlipCard.js";
 
-import { iconManager } from "../../icons/iconManager.js";
+import { shuffleArray, createDeck } from "../../utilities/deckBuilder.js";
 
 export default function Game() {
 
-    const [ selectedCards, setSelectedCards ] = useState(null);
+    const [ selectedCards, setSelectedCards ] = useState([]);
+    const [ matchedCards, setMatchedCards ] = useState([]);
+
     const { difficulty } = useParams();
+
+    useEffect(() => {
+        console.log("selectedCards is set to: ", selectedCards);
+        if (selectedCards.length === 2) {
+            console.log("2 cards have been selected");
+            const isMatch = selectedCards[0].imageId === selectedCards[1].imageId && selectedCards[0].cardType === selectedCards[1].cardType && selectedCards[0].match !== selectedCards[1].match;
+            if (isMatch) {
+                console.log("match");
+                setTimeout(() => {
+                    setMatchedCards([...matchedCards, {
+                        imageId: selectedCards[0].imageId,
+                        cardType: selectedCards[0].cardType
+                    }]);
+                    setSelectedCards([]);
+                }, 1000)
+            } else {
+                console.log("fail");
+                setTimeout(() => setSelectedCards([]), 1000);
+            };
+        };
+    }, [selectedCards]);
+
+    useEffect(() => {
+        if (matchedCards.length === cardCount) {
+            console.log("Game Over")
+        };
+    }, [matchedCards]);
 
     let cardCount = null;
 
@@ -29,55 +58,17 @@ export default function Game() {
             throw new Error("difficulty is set to unknown value");
     };
 
-    function createImageArray(count) {
-        let cardArray = [];
-
-        let imageArray = Object.entries(iconManager.image);
-        let iconArray = Object.entries(iconManager.cards);
-
-        while (count > 0) {
-            let extractIndex = Math.floor(Math.random() * (imageArray.length));
-            
-            let cardData = imageArray[extractIndex].slice();
-            let cardIcon = iconArray[Math.floor(Math.random() * iconArray.length)];
-
-            cardData.push(...cardIcon);
-            cardData[0] = {
-                imageName: cardData[0],
-                imageMatch: "a" 
-            };
-            let matchingCardData = cardData.slice();
-            matchingCardData[0].imageMatch = "b";
-
-            cardArray.push(cardData);
-            cardArray.push(matchingCardData);
-            imageArray.splice(extractIndex, 1);
-            count--;
-        };
-
-        return cardArray;
-    }
-
-    function shuffleArray(arr) {
-        const newArray = arr.slice();
-        for (let i = newArray.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-
-            [ newArray[i], newArray[j] ] = [ newArray[j], newArray[i] ];
-        };
-        console.log("shuffled array is: ", newArray)
-        return newArray;
-    };
-
-    const flipCardArray = createImageArray(cardCount);
-    const shuffledCards = shuffleArray(flipCardArray);
+    const shuffledCards = useMemo(() => {
+        const deck = createDeck(cardCount);
+        return shuffleArray(deck);
+    }, [cardCount]);
 
     return (
         <div>
             <p>Game Started at {difficulty}</p>
-            <div>
+            <div style={{display: "flex", flexWrap: "wrap"}}>
                 {shuffledCards.map((cardData, i) => {
-                    return <FlipCard cardData={cardData} selectedCards={selectedCards} setSelectedCards={setSelectedCards} key={`flipcard-${i}`} />
+                    return <FlipCard cardData={cardData} selectedCards={selectedCards} setSelectedCards={setSelectedCards} matchedCards={matchedCards} i={i} key={`flipcard-${i}`} />
                 })}
             </div>
         </div>

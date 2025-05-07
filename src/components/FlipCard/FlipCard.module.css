@@ -4,6 +4,7 @@
     height: 255px;
     background-color: transparent;
     perspective: 1000px;
+    margin: 5px;
 }
 
 .flip-card-back, .flip-card-front {

@@ -1,25 +1,64 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./FlipCard.module.css";
 
-export default function FlipCard({ cardData, selectedCards, setSelectedCards }) {
+export default function FlipCard({ cardData, selectedCards, setSelectedCards, matchedCards, i }) {
 
-    const [ showCard, setShowCard ] = useState(false);
+    const [ init, setInit ] = useState(true);
 
-    const [ imageId, ImageIcon, cardType, CardIcon ] = cardData;
+    useEffect(() => {
+        setTimeout(() => setInit(false), 1500 + (100 * i));
+    }, []);
+
+    /*
+    cardData = {
+        id: {
+            imageId: imageArray[extractIndex][0],
+            cardType: cardIcon[0],
+            match: "a"
+        },
+        cardImage: imageArray[extractIndex][1],
+        typeImage: imageArray[extractIndex][1]
+    };
+    */
+    
+    const [ firstSelected, secondSelected ] = selectedCards;
+
+    const ImageIcon = cardData.cardImage;
+    const CardIcon = cardData.typeImage;
 
     let isBlue = false;
 
-    if (cardType === "spades" || cardType === "clubs") {
+    if (cardData.id.cardType === "spades" || cardData.id.cardType === "clubs") {
         isBlue = true;
     };
 
+    const isVisible = (
+        firstSelected && firstSelected.imageId === cardData.id.imageId && firstSelected.cardType === cardData.id.cardType && firstSelected.match === cardData.id.match
+    ) || (
+        secondSelected && secondSelected.imageId === cardData.id.imageId && secondSelected.cardType === cardData.id.cardType && secondSelected.match === cardData.id.match
+    );
+
+    const isMatched = matchedCards.find(card => {
+        return card.imageId === cardData.id.imageId && card.cardType === cardData.id.cardType;
+    });
+
     function handleClick() {
-        setShowCard(!showCard);
+        if (!isVisible) {
+            if (selectedCards.length === 0) {
+                setSelectedCards([cardData.id]);
+            } else if (selectedCards.length === 1) {
+                setSelectedCards([...selectedCards, cardData.id])
+            };
+        };
     };
 
-    return (
-        <div className={showCard ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={handleClick}>
+    return isMatched ? (
+        <div className={styles["flip-card"]}>
+            <p>Matched</p>
+        </div>
+        ) : (
+        <div className={isVisible || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={handleClick}>
             <div className={styles["flip-card-contents"]}>
                 <div className={styles["flip-card-front"]}>
                     <p>front</p>
@@ -33,9 +72,3 @@ export default function FlipCard({ cardData, selectedCards, setSelectedCards }) 
         </div>
     );
 };
-
-{/* <div className={`${styles.cardContainer} ${isBlue ? styles.blueCard : styles.redCard}`}>
-            <CardIcon className={`${styles.typeIcon} ${styles.topType}`} />
-            <ImageIcon className={styles.imageIcon} />
-            <CardIcon className={`${styles.typeIcon} ${styles.bottomType}`} />
-        </div> */}
