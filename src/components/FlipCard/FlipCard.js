@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import styles from "./FlipCard.module.css";
+import { iconManager } from "../../icons/iconManager.js";
 
 export default function FlipCard({ cardData, selectedCards, setSelectedCards, matchedCards, i }) {
 
@@ -9,23 +10,14 @@ export default function FlipCard({ cardData, selectedCards, setSelectedCards, ma
     useEffect(() => {
         setTimeout(() => setInit(false), 1500 + (100 * i));
     }, []);
-
-    /*
-    cardData = {
-        id: {
-            imageId: imageArray[extractIndex][0],
-            cardType: cardIcon[0],
-            match: "a"
-        },
-        cardImage: imageArray[extractIndex][1],
-        typeImage: imageArray[extractIndex][1]
-    };
-    */
     
     const [ firstSelected, secondSelected ] = selectedCards;
 
     const ImageIcon = cardData.cardImage;
     const CardIcon = cardData.typeImage;
+
+    const CardBackIcon = iconManager.ui.cardBack;
+
 
     let isBlue = false;
 
@@ -54,14 +46,16 @@ export default function FlipCard({ cardData, selectedCards, setSelectedCards, ma
     };
 
     return isMatched ? (
-        <div className={styles["flip-card"]}>
-            <p>Matched</p>
+        <div className={styles["matched-card"]}>
+            <CardIcon className={`${styles.typeIcon} ${styles.topType}`} />
+            <ImageIcon className={styles.imageIcon} />
+            <CardIcon className={`${styles.typeIcon} ${styles.bottomType}`} />
         </div>
         ) : (
-        <div className={isVisible || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={handleClick}>
+        <div className={isVisible || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={init ? null : handleClick}>
             <div className={styles["flip-card-contents"]}>
                 <div className={styles["flip-card-front"]}>
-                    <p>front</p>
+                    <CardBackIcon className={styles.frontIcon} />
                 </div>
                 <div className={`${styles["flip-card-back"]} ${isBlue ? styles.blueCard : styles.redCard}`}>
                     <CardIcon className={`${styles.typeIcon} ${styles.topType}`} />
@@ -72,3 +66,16 @@ export default function FlipCard({ cardData, selectedCards, setSelectedCards, ma
         </div>
     );
 };
+
+
+    /*
+    cardData = {
+        id: {
+            imageId: imageArray[extractIndex][0],
+            cardType: cardIcon[0],
+            match: "a"
+        },
+        cardImage: imageArray[extractIndex][1],
+        typeImage: imageArray[extractIndex][1]
+    };
+    */

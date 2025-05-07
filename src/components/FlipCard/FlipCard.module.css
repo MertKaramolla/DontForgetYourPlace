@@ -7,7 +7,40 @@
     margin: 5px;
 }
 
-.flip-card-back, .flip-card-front {
+.matched-card {
+    box-sizing: border-box;
+    width: 150px;
+    height: 255px;
+    margin: 5px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    animation: 1s linear forwards isMatched;
+}
+
+@keyframes isMatched {
+    from {
+        fill: greenyellow;
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(1.2);
+        fill: greenyellow;
+        background-color: initial;
+    }
+    40% {
+        transform: scale(1);
+    }
+
+    to {
+        fill: gray;
+    }
+}
+
+.flip-card-back, .flip-card-front, .matched-card {
     clip-path: polygon(
       0px calc(100% - 20px),
       4px calc(100% - 20px),
@@ -71,7 +104,13 @@
 }
 
 .flip-card-front {
-    background-color: hotpink;
+    background-color: whitesmoke;
+}
+
+.frontIcon {
+    height: 100%;
+    fill: red;
+    width: 100%;
 }
 
 .flip-card-back {

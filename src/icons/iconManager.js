@@ -1,3 +1,5 @@
+import { ReactComponent as CardBackIcon } from "./Svgs/UiIcons/CardBack.svg"
+
 import { ReactComponent as ClubsIcon } from "./Svgs/CardIcons/Clubs.svg";
 import { ReactComponent as DiamondsIcon } from "./Svgs/CardIcons/Diamonds.svg";
 import { ReactComponent as HeartsIcon } from "./Svgs/CardIcons/Hearts.svg";
@@ -61,6 +63,9 @@ import { ReactComponent as WeightsIcon } from "./Svgs/ImageIcons/Weights.svg";
 import { ReactComponent as WorldIcon } from "./Svgs/ImageIcons/World.svg";
 
 const iconManager = {
+  ui: {
+    cardBack: CardBackIcon,
+  },
   cards: {
     clubs: ClubsIcon,
     diamonds: DiamondsIcon,
