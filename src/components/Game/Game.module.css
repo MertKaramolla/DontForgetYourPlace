@@ -1,0 +1,18 @@
+.timerBar {
+    width: 100%;
+    height: 20px;
+    background-color: hotpink;
+}
+
+.animatedTimer {
+    animation: timer linear forwards;
+}
+
+@keyframes timer {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}

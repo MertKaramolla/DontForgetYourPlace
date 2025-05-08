@@ -3,15 +3,17 @@ import { useEffect, useState } from "react";
 import styles from "./FlipCard.module.css";
 import { iconManager } from "../../icons/iconManager.js";
 
-export default function FlipCard({ cardData, selectedCards, setSelectedCards, matchedCards, i }) {
+export default function FlipCard({ cardData, isMatched, isFlipped, selectCard, i, setDeckIsDisplayed }) {
 
     const [ init, setInit ] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => setInit(false), 1500 + (100 * i));
+        setTimeout(() => {
+            setInit(false);
+            if(setDeckIsDisplayed) {setDeckIsDisplayed(true);
+            console.log("deck display is set on: ", i)}
+        }, 1500 + (100 * i));
     }, []);
-    
-    const [ firstSelected, secondSelected ] = selectedCards;
 
     const ImageIcon = cardData.cardImage;
     const CardIcon = cardData.typeImage;
@@ -25,26 +27,6 @@ export default function FlipCard({ cardData, selectedCards, setSelectedCards, ma
         isBlue = true;
     };
 
-    const isVisible = (
-        firstSelected && firstSelected.imageId === cardData.id.imageId && firstSelected.cardType === cardData.id.cardType && firstSelected.match === cardData.id.match
-    ) || (
-        secondSelected && secondSelected.imageId === cardData.id.imageId && secondSelected.cardType === cardData.id.cardType && secondSelected.match === cardData.id.match
-    );
-
-    const isMatched = matchedCards.find(card => {
-        return card.imageId === cardData.id.imageId && card.cardType === cardData.id.cardType;
-    });
-
-    function handleClick() {
-        if (!isVisible) {
-            if (selectedCards.length === 0) {
-                setSelectedCards([cardData.id]);
-            } else if (selectedCards.length === 1) {
-                setSelectedCards([...selectedCards, cardData.id])
-            };
-        };
-    };
-
     return isMatched ? (
         <div className={styles["matched-card"]}>
             <CardIcon className={`${styles.typeIcon} ${styles.topType}`} />
@@ -52,7 +34,7 @@ export default function FlipCard({ cardData, selectedCards, setSelectedCards, ma
             <CardIcon className={`${styles.typeIcon} ${styles.bottomType}`} />
         </div>
         ) : (
-        <div className={isVisible || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={init ? null : handleClick}>
+        <div className={isFlipped || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={init ? null : () => selectCard(isFlipped, cardData.id)}>
             <div className={styles["flip-card-contents"]}>
                 <div className={styles["flip-card-front"]}>
                     <CardBackIcon className={styles.frontIcon} />

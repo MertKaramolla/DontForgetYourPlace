@@ -12,6 +12,7 @@ function App() {
       <Route path="/highscores" element={<p>Display my HighScores</p>} />
       <Route path="/settings" element={<p>Display my Settings</p>} />
       <Route path="/game/:difficulty" element={<Game />} />
+      <Route path="/gameover" element={<p>GameOver</p>} />
     </Routes>
   );
 };
