@@ -16,3 +16,13 @@
         width: 0%;
     }
 }
+
+.lifeIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.exitIcon {
+    width: 20px;
+    height: 20px;
+}

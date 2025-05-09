@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 800">
   <defs>
-    <pattern id="a" width="20" height="20" patternTransform="scale(8)" patternUnits="userSpaceOnUse" shape-rendering="crispEdges">
+    <pattern id="cardBack" width="20" height="20" patternTransform="scale(8)" patternUnits="userSpaceOnUse" shape-rendering="crispEdges">
       <path fill="hsl(0, 0%, 0%)" d="M3 0h1v1H3zM4 0h1v1H4zM5 0h1v1H5zM14 0h1v1h-1zM15 0h1v1h-1zM16 0h1v1h-1zM2 1h1v1H2zM3 1h1v1H3zM6 1h1v1H6zM13 1h1v1h-1z"/>
       <path fill="hsl(0, 0%, 60%)" d="M14 1h1v1h-1zM15 1h1v1h-1z"/>
       <path fill="hsl(0, 0%, 0%)" d="M16 1h1v1h-1zM17 1h1v1h-1zM1 2h1v1H1zM2 2h1v1H2zM7 2h1v1H7zM12 2h1v1h-1z"/>
@@ -54,5 +54,5 @@
       <path fill="hsl(0, 0%, 0%)" d="M16 18h1v1h-1zM17 18h1v1h-1zM3 19h1v1H3zM4 19h1v1H4zM5 19h1v1H5zM14 19h1v1h-1zM15 19h1v1h-1zM16 19h1v1h-1z"/>
     </pattern>
   </defs>
-  <rect width="100%" height="100%" fill="url(#a)"/>
+  <rect width="100%" height="100%" fill="url(#cardBack)"/>
 </svg>

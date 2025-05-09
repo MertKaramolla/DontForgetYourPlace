@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" viewBox="0 0 800 800">
+  <defs>
+    <pattern id="a" width="20" height="20" patternTransform="scale(40)" patternUnits="userSpaceOnUse" shape-rendering="crispEdges">
+      <path fill="hsl(0, 0%, 0%)" d="M5 4h1v1H5zM6 4h1v1H6zM7 4h1v1H7zM8 4h1v1H8zM11 4h1v1h-1zM12 4h1v1h-1zM13 4h1v1h-1zM14 4h1v1h-1zM5 5h1v1H5zM6 5h1v1H6zM7 5h1v1H7zM8 5h1v1H8zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM14 5h1v1h-1zM3 6h1v1H3zM4 6h1v1H4zM9 6h1v1H9zM10 6h1v1h-1zM15 6h1v1h-1zM16 6h1v1h-1zM3 7h1v1H3zM4 7h1v1H4zM9 7h1v1H9zM10 7h1v1h-1zM15 7h1v1h-1zM16 7h1v1h-1zM3 8h1v1H3zM4 8h1v1H4zM15 8h1v1h-1zM16 8h1v1h-1zM3 9h1v1H3zM4 9h1v1H4zM15 9h1v1h-1zM16 9h1v1h-1zM5 10h1v1H5zM6 10h1v1H6zM13 10h1v1h-1zM14 10h1v1h-1zM5 11h1v1H5zM6 11h1v1H6zM13 11h1v1h-1zM14 11h1v1h-1zM7 12h1v1H7zM8 12h1v1H8zM11 12h1v1h-1zM12 12h1v1h-1zM7 13h1v1H7zM8 13h1v1H8zM11 13h1v1h-1zM12 13h1v1h-1zM9 14h1v1H9zM10 14h1v1h-1zM9 15h1v1H9zM10 15h1v1h-1z"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#a)"/>
+</svg>

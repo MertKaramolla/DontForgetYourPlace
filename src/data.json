@@ -1,0 +1,52 @@
+[
+    {
+        "score": 150,
+        "difficulty": "easy",
+        "timeLeft": 60
+    },
+    {
+        "score": 132,
+        "difficulty": "hard",
+        "timeLeft": 23
+    },
+    {
+        "score": 128,
+        "difficulty": "insane",
+        "timeLeft": 10
+    },
+    {
+        "score": 110,
+        "difficulty": "medium",
+        "timeLeft": 60
+    },
+    {
+        "score": 70,
+        "difficulty": "hard",
+        "timeLeft": 15
+    },
+    {
+        "score": 66,
+        "difficulty": "hard",
+        "timeLeft": 2
+    },
+    {
+        "score": 60,
+        "difficulty": "medium",
+        "timeLeft": 40
+    },
+    {
+        "score": 59,
+        "difficulty": "hard",
+        "timeLeft": 1
+    },
+    {
+        "score": 50,
+        "difficulty": "easy",
+        "timeLeft": 40
+    },
+    {
+        "score": 30,
+        "difficulty": "easy",
+        "timeLeft": 60
+    }
+]

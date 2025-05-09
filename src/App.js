@@ -4,6 +4,12 @@ import './App.css';
 
 import Menu from './components/Menu/Menu.js';
 import Game from './components/Game/Game.js';
+import GameOver from './components/GameOver/GameOver.js';
+
+import dataPackage from "./data.json";
+
+const mockData = JSON.stringify(dataPackage);
+localStorage.setItem("highscores", mockData);
 
 function App() {
   return (
@@ -12,7 +18,7 @@ function App() {
       <Route path="/highscores" element={<p>Display my HighScores</p>} />
       <Route path="/settings" element={<p>Display my Settings</p>} />
       <Route path="/game/:difficulty" element={<Game />} />
-      <Route path="/gameover" element={<p>GameOver</p>} />
+      <Route path="/gameover" element={<GameOver />} />
     </Routes>
   );
 };

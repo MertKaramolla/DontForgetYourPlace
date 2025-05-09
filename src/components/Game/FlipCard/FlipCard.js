@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
 
 import styles from "./FlipCard.module.css";
-import { iconManager } from "../../icons/iconManager.js";
+import { iconManager } from "../../../icons/iconManager.js";
 
 export default function FlipCard({ cardData, isMatched, isFlipped, selectCard, i, setDeckIsDisplayed }) {
 
     const [ init, setInit ] = useState(true);
 
     useEffect(() => {
-        setTimeout(() => {
+        const timerId = setTimeout(() => {
             setInit(false);
             if(setDeckIsDisplayed) {setDeckIsDisplayed(true);
             console.log("deck display is set on: ", i)}
         }, 1500 + (100 * i));
+
+        return () => clearTimeout(timerId);
+
     }, []);
 
     const ImageIcon = cardData.cardImage;
     const CardIcon = cardData.typeImage;
 
     const CardBackIcon = iconManager.ui.cardBack;
-
 
     let isBlue = false;
 

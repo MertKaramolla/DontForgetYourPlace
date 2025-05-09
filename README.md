@@ -1,10 +1,5 @@
 ##      Left off at
 
-    -> Game.js
-                -> Add state and data to navigate("/gameover);
-                -> add cleanup functions to useEffects with timeouts;
-    -> FlipCard.js
-                -> add cleanup functions to useEffects with timeouts;
-    -> Create GameOver component;
-
+    -> Style Game.js GameOver.js and Menu.js
+    -> GameOver.js -> add way to update highscores list with naming option
 ##      Issues to FIX
