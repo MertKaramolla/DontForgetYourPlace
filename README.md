@@ -1,5 +1,5 @@
 ##      Left off at
+    -> Game.js -> Finish styling FlipCard grid, change size depending on amount of cards
 
     -> Style Game.js GameOver.js and Menu.js
-    -> GameOver.js -> add way to update highscores list with naming option
 ##      Issues to FIX

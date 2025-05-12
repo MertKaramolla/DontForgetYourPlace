@@ -36,6 +36,7 @@ export default function Menu() {
             <div className={styles.buttonContainer}>
                 <Link to="/settings" className={styles.button}>Settings</Link>
             </div>
+            <p className={styles.devTag}>Made by Karamella</p>
         </div>
     );
 };

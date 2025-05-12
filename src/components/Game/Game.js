@@ -14,7 +14,9 @@ export default function Game() {
     const [ deckIsDisplayed, setDeckIsDisplayed ] = useState(false);
     const [ selectedCards, setSelectedCards ] = useState([]);
     const [ matchedCards, setMatchedCards ] = useState([]);
-    const [ userScore, setUserScore ] = useState(0);
+    const [ userScore, setUserScore ] = useState([0, 0]);
+    const [ showIncreaser, setShowIncreaser ] = useState(false);
+    const [ showDecreaser, setShowDecreaser ] = useState(false);
 
     const { difficulty } = useParams();
     const navigate = useNavigate();
@@ -36,7 +38,7 @@ export default function Game() {
         hard: {
             cardCount: 16,
             timer: 120,
-            lives: 10
+            lives: 8
         },
         insane: {
             cardCount: 24,
@@ -90,11 +92,11 @@ export default function Game() {
                     imageId: selectedCards[0].imageId,
                     cardType: selectedCards[0].cardType
                 }]);
-                setUserScore(prev => prev + 2);
+                setUserScore(([ prev, cur ]) => [cur, cur + 8]);
                 setSelectedCards([]);
             } else {
                 console.log("Selected Cards do not match");
-                setUserScore(prev => prev - 1);
+                setUserScore(([ prev, cur ]) => [cur, cur - 4]);
                 setLivesLeft(prev => prev - 1);
                 setSelectedCards([]);
             };
@@ -124,6 +126,17 @@ export default function Game() {
         return () => clearTimeout(timerId);
     }, [livesLeft]);
 
+    useEffect(() => {
+        const [ prev, cur ] = userScore;
+        if (cur > prev) {
+            setShowIncreaser(true);
+            setTimeout(() => setShowIncreaser(false), 500);
+        } else if (cur < prev){
+            setShowDecreaser(true);
+            setTimeout(() => setShowDecreaser(false), 500);
+        };
+    }, [userScore])
+
     const ExitIcon = iconManager.ui.exit;
 
     const shuffledCards = useMemo(() => {
@@ -149,10 +162,17 @@ export default function Game() {
         <div>
             <div className={styles.timerBar} ref={timerBar}></div>
             <ExitIcon className={styles.exitIcon} onClick={handleExit} />
-            <p>Game Started at {difficulty}</p>
-            <LifeBar livesLeft={livesLeft} numberOfLives={config[difficulty].lives} />
-            <p>Score is: {userScore}</p>
-            <div style={{display: "flex", flexWrap: "wrap"}}>
+            <div className={styles.header}>
+                <p className={styles.scoreCounter}>
+                    Score: <span className={styles.score}>
+                        {userScore[1]}
+                        {showIncreaser && <span className={styles.increaseScore}>+8</span>}
+                        {showDecreaser && <span className={styles.decreaseScore}>-4</span>}
+                    </span>
+                </p>
+                <LifeBar livesLeft={livesLeft} numberOfLives={config[difficulty].lives} />
+            </div>
+            <div className={styles.cardsContainer}>
                 {shuffledCards.map((cardData, i) => {
 
                     const [ firstSelected, secondSelected ] = selectedCards;

@@ -15,7 +15,7 @@ export default function LifeBar({ livesLeft, numberOfLives }) {
     };
 
     return (
-        <div>
+        <div className={styles.lifeContainer}>
             {lifeArray}
         </div>
     );
