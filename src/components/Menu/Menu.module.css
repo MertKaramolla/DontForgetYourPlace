@@ -1,0 +1,107 @@
+.title {
+    text-align: center;
+    font-size: 6em;
+    line-height: 0.7;
+    cursor: default;
+    animation: shakeVertical 0.15s infinite;
+    margin-top: 150px;
+}
+
+@keyframes shakeVertical {
+    0% { 
+        transform: translateY(0);
+    }
+    25% { 
+        transform: translateY(2px);
+    }
+    50% { 
+        transform: translateY(-2px);
+    }
+    75% { 
+        transform: translateY(2px);
+    }
+    100% { 
+        transform: translateY(0);
+    }
+}
+
+@keyframes shakeHorizontal {
+    0% { 
+        transform: translateX(0);
+    }
+    25% { 
+        transform: translateX(2px);
+    }
+    50% { 
+        transform: translateX(-2px);
+    }
+    75% { 
+        transform: translateX(2px);
+    }
+    100% { 
+        transform: translateX(0);
+    }
+}
+
+.buttonContainer {
+    background-color: black;
+    width: 320px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.buttonContainer:hover {
+    animation: shakeHorizontal 0.15s infinite;
+}
+
+.button {
+    all: unset;
+    background-color: aquamarine;
+    width: 312px;
+    height: 52px;
+    font-size: 2.5em;
+    vertical-align: 50%;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+.buttonContainer, .button {
+    clip-path: polygon(
+      0px calc(100% - 16px),
+      4px calc(100% - 16px),
+      4px calc(100% - 8px),
+      8px calc(100% - 8px),
+      8px calc(100% - 4px),
+      16px calc(100% - 4px),
+      16px 100%,
+      calc(100% - 16px) 100%,
+      calc(100% - 16px) calc(100% - 4px),
+      calc(100% - 8px) calc(100% - 4px),
+      calc(100% - 8px) calc(100% - 8px),
+      calc(100% - 4px) calc(100% - 8px),
+      calc(100% - 4px) calc(100% - 16px),
+      100% calc(100% - 16px),
+      100% 16px,
+      calc(100% - 4px) 16px,
+      calc(100% - 4px) 8px,
+      calc(100% - 8px) 8px,
+      calc(100% - 8px) 4px,
+      calc(100% - 16px) 4px,
+      calc(100% - 16px) 0px,
+      16px 0px,
+      16px 4px,
+      8px 4px,
+      8px 8px,
+      4px 8px,
+      4px 16px,
+      0px 16px
+    );
+}
+
+.difficultyText {
+    text-transform: uppercase;
+}

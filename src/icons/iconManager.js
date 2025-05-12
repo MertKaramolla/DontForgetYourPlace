@@ -3,6 +3,7 @@ import { ReactComponent as RedHeartIcon } from "./Svgs/UI/AliveHeart.svg";
 import { ReactComponent as BlackHeartIcon } from "./Svgs/UI/DeadHeart.svg";
 import { ReactComponent as ExitIcon } from "./Svgs/UI/Exit.svg";
 import { ReactComponent as ReplayIcon } from "./Svgs/UI/Replay.svg";
+import { ReactComponent as ConfirmIcon } from "./Svgs/UI/Confirm.svg";
 
 import { ReactComponent as ClubsIcon } from "./Svgs/CardIcons/Clubs.svg";
 import { ReactComponent as DiamondsIcon } from "./Svgs/CardIcons/Diamonds.svg";
@@ -73,6 +74,7 @@ const iconManager = {
     redHeart: RedHeartIcon,
     exit: ExitIcon,
     replay: ReplayIcon,
+    confirm: ConfirmIcon
   },
   cards: {
     clubs: ClubsIcon,

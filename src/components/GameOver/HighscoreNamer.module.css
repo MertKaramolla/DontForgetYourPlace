@@ -1,0 +1,157 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: hsl(330, 100%, 71%, 50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer {
+    opacity: unset;
+    background-color: whitesmoke;
+    width: 500px;
+    height: 300px;
+}
+
+.modalBorder {
+    width: 508px;
+    height: 308px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer, .modalBorder {
+    clip-path: polygon(
+      0px calc(100% - 28px),
+      4px calc(100% - 28px),
+      4px calc(100% - 20px),
+      8px calc(100% - 20px),
+      8px calc(100% - 12px),
+      12px calc(100% - 12px),
+      12px calc(100% - 8px),
+      20px calc(100% - 8px),
+      20px calc(100% - 4px),
+      28px calc(100% - 4px),
+      28px 100%,
+      calc(100% - 28px) 100%,
+      calc(100% - 28px) calc(100% - 4px),
+      calc(100% - 20px) calc(100% - 4px),
+      calc(100% - 20px) calc(100% - 8px),
+      calc(100% - 12px) calc(100% - 8px),
+      calc(100% - 12px) calc(100% - 12px),
+      calc(100% - 8px) calc(100% - 12px),
+      calc(100% - 8px) calc(100% - 20px),
+      calc(100% - 4px) calc(100% - 20px),
+      calc(100% - 4px) calc(100% - 28px),
+      100% calc(100% - 28px),
+      100% 28px,
+      calc(100% - 4px) 28px,
+      calc(100% - 4px) 20px,
+      calc(100% - 8px) 20px,
+      calc(100% - 8px) 12px,
+      calc(100% - 12px) 12px,
+      calc(100% - 12px) 8px,
+      calc(100% - 20px) 8px,
+      calc(100% - 20px) 4px,
+      calc(100% - 28px) 4px,
+      calc(100% - 28px) 0px,
+      28px 0px,
+      28px 4px,
+      20px 4px,
+      20px 8px,
+      12px 8px,
+      12px 12px,
+      8px 12px,
+      8px 20px,
+      4px 20px,
+      4px 28px,
+      0px 28px
+    );
+}
+
+.congratsText {
+    text-align: center;
+    font-size: 3em;
+    color: green;
+    margin: 30px 0 5px;
+}
+
+.descriptionText {
+    text-align: center;
+    font-size: 2em;
+    color: black;
+    margin: 5px 0;
+}
+
+.inputLabel {
+    margin: 50px 0 10px;
+    text-align: center;
+    font-size: 1.8em;
+    color: black;
+    display: block;
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40px;
+}
+
+.nameInput {
+    all: unset;
+    background-color: white;
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 1.8em;
+    width: 200px;
+    margin-right: 10px;
+}
+
+.nameInput {
+    clip-path: polygon(
+      0px calc(100% - 8px),
+      4px calc(100% - 8px),
+      4px calc(100% - 4px),
+      8px calc(100% - 4px),
+      8px 100%,
+      calc(100% - 8px) 100%,
+      calc(100% - 8px) calc(100% - 4px),
+      calc(100% - 4px) calc(100% - 4px),
+      calc(100% - 4px) calc(100% - 8px),
+      100% calc(100% - 8px),
+      100% 8px,
+      calc(100% - 4px) 8px,
+      calc(100% - 4px) 4px,
+      calc(100% - 8px) 4px,
+      calc(100% - 8px) 0px,
+      8px 0px,
+      8px 4px,
+      4px 4px,
+      4px 8px,
+      0px 8px
+    );
+}
+
+.confirmButton {
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.confirmButton:hover {
+    border: 2px solid green;
+}
+
+.confirmIcon {
+    width: 30px;
+    height: 30px;
+    fill: green;
+}

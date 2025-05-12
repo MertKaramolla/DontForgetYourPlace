@@ -3,13 +3,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { iconManager } from "../../icons/iconManager.js";
 
-export default function GameOver() {
+import HighscoreNamer from "./HighscoreNamer.js";
+
+export default function GameOver({ highScores }) {
 
     const gameOverState = useLocation();
     const { finalScore, difficulty, matches, startTime, endTime, message, livesLeft, hasWon } = gameOverState.state;
 
     const [ hasInit, setHasInit ] = useState(false);
     const [ scoreDisplay, setScoreDisplay ] = useState(finalScore);
+    const [ showHighScoreModal, setShowHighScoreModal ] = useState(false);
     const navigate = useNavigate();
 
 
@@ -67,7 +70,11 @@ export default function GameOver() {
                 return next;
             });
 
-            if (done) clearInterval(intervalId);
+            if (done) {
+                console.log("my interval is finished");
+                checkHighScore();
+                clearInterval(intervalId);
+            };
         }, 100);
 
         return () => clearInterval(intervalId);
@@ -82,6 +89,22 @@ export default function GameOver() {
 
     function handleExit() {
         navigate("/");
+    };
+
+    function checkHighScore() {
+        if (highScores.current.length > 0 && highScores.current[highScores.current.length - 1].score < totalScore) {
+            console.log("highscores.current is filled and highscore is valid");
+            setShowHighScoreModal(true);
+        } else if (highScores.current.length === 0) {
+            console.log("highscores.current is empty and highscore is valid");
+            setShowHighScoreModal(true);
+        };
+    };
+
+    const scoreData = {
+        score: totalScore,
+        difficulty,
+        timeElapsed
     };
 
     /* function checkHighScore() {
@@ -103,6 +126,7 @@ export default function GameOver() {
 
     return (
         <div>
+            {showHighScoreModal ? <HighscoreNamer highScores={highScores} setShowHighScoreModal={setShowHighScoreModal} scoreData={scoreData}/> : null}
             <div>
                 <p>{hasWon ? "Congratulations" : "Game Over"}</p>
                 <p>{hasWon ? "You have Won" : "You Lose Bitch"}</p>
