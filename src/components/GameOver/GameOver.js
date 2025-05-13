@@ -93,10 +93,10 @@ export default function GameOver({ highScores }) {
     };
 
     function checkHighScore() {
-        if (highScores.current.length > 0 && highScores.current[highScores.current.length - 1].score < totalScore) {
+        if (highScores.current.length === 10 && highScores.current[highScores.current.length - 1].score < totalScore) {
             console.log("highscores.current is filled and highscore is valid");
             setShowHighScoreModal(true);
-        } else if (highScores.current.length === 0) {
+        } else if (highScores.current.length < 10) {
             console.log("highscores.current is empty and highscore is valid");
             setShowHighScoreModal(true);
         };

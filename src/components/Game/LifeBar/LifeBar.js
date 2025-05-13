@@ -8,9 +8,9 @@ export default function LifeBar({ livesLeft, numberOfLives }) {
     const EmptyHeart = iconManager.ui.blackHeart;
     for (let i = 1; i <= numberOfLives; i++) {
         if (i > livesLeft) {
-            lifeArray.push(<EmptyHeart className={styles.lifeIcon} />);
+            lifeArray.push(<EmptyHeart className={styles.lifeIcon} key={`heartIcon-${i}-empty`}/>);
         } else {
-            lifeArray.push(<RedHeart className={styles.lifeIcon} />);
+            lifeArray.push(<RedHeart className={styles.lifeIcon} key={`heartIcon-${i}-red`}/>);
         };
     };
 

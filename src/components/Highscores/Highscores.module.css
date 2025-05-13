@@ -1,0 +1,82 @@
+.heading {
+    text-align: center;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-top: 150px;
+}
+
+.scoreList {
+    padding: 0;
+    width: 440px;
+    margin: 0 auto;
+}
+
+.listItem {
+    display: list-item;
+    margin: 10px 0;
+    list-style-type: none;
+}
+
+.highScoreContainer {
+    background-color: #e9dbc9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 400px;
+    padding: 5px 20px;
+}
+
+.scoreDisplay {
+    font-size: 2em;
+    margin: 0;
+    width: 50px;
+}
+
+.nameDisplay {
+    font-size: 2em;
+    text-transform: uppercase;
+    margin: 0;
+    text-align: left;
+    width: 100px;
+}
+
+.difficultyDisplay {
+    width: 100px;
+    text-align: right;
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.difficultyValue {
+    text-transform: uppercase;
+}
+
+.exitIcon {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 10px;
+}
+
+.emptyHeading {
+    text-align: center;
+    font-size: 2.5em;
+    text-transform: uppercase;
+    margin-top: 250px;
+}
+
+.emptyStatement {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.emptyExit {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+}
