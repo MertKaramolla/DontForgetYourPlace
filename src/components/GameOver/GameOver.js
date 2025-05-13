@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import { iconManager } from "../../icons/iconManager.js";
+import styles from "./GameOver.module.css";
 
 import HighscoreNamer from "./HighscoreNamer.js";
 
@@ -11,7 +12,7 @@ export default function GameOver({ highScores }) {
     const { finalScore, difficulty, matches, startTime, endTime, message, livesLeft, hasWon } = gameOverState.state;
 
     const [ hasInit, setHasInit ] = useState(false);
-    const [ scoreDisplay, setScoreDisplay ] = useState(finalScore);
+    const [ scoreDisplay, setScoreDisplay ] = useState(finalScore[1]);
     const [ showHighScoreModal, setShowHighScoreModal ] = useState(false);
     const navigate = useNavigate();
 
@@ -20,22 +21,22 @@ export default function GameOver({ highScores }) {
         easy: {
             cardCount: 6,
             timer: 120,
-            lives: 4
+            lives: 4,
         },
         medium: {
             cardCount: 12,
             timer: 120,
-            lives: 6
+            lives: 6,
         },
         hard: {
             cardCount: 16,
             timer: 120,
-            lives: 10
+            lives: 8,
         },
         insane: {
-            cardCount: 24,
+            cardCount: 25,
             timer: 60,
-            lives: 6
+            lives: 6,
         }
     };
 
@@ -43,7 +44,7 @@ export default function GameOver({ highScores }) {
     const timeLeft = config[difficulty].timer - timeElapsed;
 
     const [extraTime, setExtraTime ] = useState(timeLeft);
-    const totalScore = timeLeft + finalScore;
+    const totalScore = timeLeft + finalScore[1];
 
     useEffect(() => {
         const timerId = setTimeout(() => {
@@ -107,49 +108,47 @@ export default function GameOver({ highScores }) {
         timeElapsed
     };
 
-    /* function checkHighScore() {
-        const localData = localStorage.getItem("highscores");
-        const localHighscores = JSON.parse(localData);
-        if (localHighscores && localHighscores.length > 0 && localHighscores[localHighscores.length - 1].score < totalScore) {
-            localHighscores.push({
-                score: totalScore,
-                difficulty,
-                timeElapsed
-            });
-            localHighscores.sort((a, b) => b.score - a.score);
-            while (localHighscores.length > 10) {
-                localHighscores.pop();
-            };
-            localStorage.setItem("highscores", JSON.stringify(localHighscores));
-        };
-    }; */
+    const colorMap = {
+        easy: "greenyellow",
+        medium: "yellow",
+        hard: "orange",
+        insane: "#BF3131",
+    };
 
     return (
-        <div>
+        <div className={styles.container}>
             {showHighScoreModal ? <HighscoreNamer highScores={highScores} setShowHighScoreModal={setShowHighScoreModal} scoreData={scoreData}/> : null}
             <div>
-                <p>{hasWon ? "Congratulations" : "Game Over"}</p>
-                <p>{hasWon ? "You have Won" : "You Lose Bitch"}</p>
-                {!hasWon && <p>{message}</p>}
-                <p>on {difficulty} difficulty</p>
+                <p className={hasWon ? styles.congrats : styles.gameover}>{hasWon ? "Congratulations" : "Game Over"}</p>
+                <p className={hasWon ? styles.winStatement : styles.loseStatement}>{hasWon ? "You have Won" : "You Lose Bitch"}</p>
+                {!hasWon && <p className={styles.lossCondition}>{message}</p>}
+                <p className={styles.difficultyStatement}>on <span className={styles.difficultyText} style={{color: colorMap[difficulty]}}>{difficulty}</span> difficulty.</p>
             </div>
-            <div>
-                <p>Final Score:</p>
-                <p>{scoreDisplay}</p>
-                {hasWon && extraTime > 0 ? <p>time left: {extraTime}s</p> : null}
+            <div className={styles.finalScoreContainer}>
+                <p className={styles.finalScoreLabel}>Final Score:</p>
+                <p className={styles.finalScoreDisplay}>{scoreDisplay}</p>
+                {hasWon && extraTime > 0 ? <p className={styles.finalScoreIncrementor}>time left: {extraTime}s</p> : null}
             </div>
-            <div>
+            <div className={styles.dataContainer}>
                 {hasWon ? (
                     <>
-                        <p>Lives Left: {livesLeft}</p>
-                        <p>Finished in: {timeElapsed} seconds</p>
+                        <div className={styles.metaContainer}>
+                            <p className={styles.metaData}>Lives Left:</p>
+                            <p className={styles.metaData}>{livesLeft}</p>
+                        </div>
+                        <div className={styles.metaContainer}>
+                            <p className={styles.metaData}>Finished in:</p>
+                            <p className={styles.metaData}>{timeElapsed}s</p>
+                        </div>
                     </>
-                ) : <p>Matches: {matches.length} / {config[difficulty].cardCount}</p>}
+                ) : <p className={styles.metaData}>Correct Matches: {matches.length} / {config[difficulty].cardCount}</p>}
             </div>
-            <button type="button" onClick={handleReplay}><ReplayIcon width="20px" /> Play Again</button>
-            <button type="button" onClick={handleExit}><MenuIcon width="20px" /> Main Menu</button>
+            <div className={styles.buttonContainer}>
+                <button type="button" onClick={handleReplay} className={styles.button}><ReplayIcon className={styles.buttonIcon} /> Play Again</button>
+            </div>
+            <div className={styles.buttonContainer}>
+                <button type="button" onClick={handleExit} className={styles.button}><MenuIcon className={styles.buttonIcon} /> Main Menu</button>
+            </div>
         </div>
     );
 };
-
-// Highscore: FinalScore, difficulty, timeElapsed

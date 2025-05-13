@@ -1,3 +1,8 @@
+.gameContainer {
+    background-color: #F5ECE0;
+    height: 100vh;
+}
+
 .timerBar {
     width: 100%;
     height: 20px;
@@ -91,8 +96,12 @@
 }
 
 .cardsContainer {
-    background-color: red;
-    margin: 0 50px;
-    display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: center;
+}
+
+.flipCardGrid {
+    margin: 0 auto;
+    display: inline-grid;
+    grid-template: 1fr 1fr 1fr / repeat(8, 1fr);
 }

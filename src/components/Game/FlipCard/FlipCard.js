@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import styles from "./FlipCard.module.css";
 import { iconManager } from "../../../icons/iconManager.js";
 
-export default function FlipCard({ cardData, isMatched, isFlipped, selectCard, i, setDeckIsDisplayed }) {
+export default function FlipCard({ cardData, isMatched, isFlipped, selectCard, setDeckIsDisplayed, i, sizes }) {
 
     const [ init, setInit ] = useState(true);
 
@@ -30,13 +30,13 @@ export default function FlipCard({ cardData, isMatched, isFlipped, selectCard, i
     };
 
     return isMatched ? (
-        <div className={styles["matched-card"]}>
+        <div className={styles["matched-card"]} style={{width: sizes.cardWidth, height: sizes.cardHeight}}>
             <CardIcon className={`${styles.typeIcon} ${styles.topType}`} />
             <ImageIcon className={styles.imageIcon} />
             <CardIcon className={`${styles.typeIcon} ${styles.bottomType}`} />
         </div>
         ) : (
-        <div className={isFlipped || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={init ? null : () => selectCard(isFlipped, cardData.id)}>
+        <div className={isFlipped || init ? `${styles["flip-card"]} ${styles.flipped}` : styles["flip-card"]} onClick={init ? null : () => selectCard(isFlipped, cardData.id)} style={{width: sizes.cardWidth, height: sizes.cardHeight}}>
             <div className={styles["flip-card-contents"]}>
                 <div className={styles["flip-card-front"]}>
                     <CardBackIcon className={styles.frontIcon} />

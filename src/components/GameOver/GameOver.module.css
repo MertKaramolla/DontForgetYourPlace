@@ -1,0 +1,173 @@
+.container {
+    background-color: #F5ECE0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.congrats, .gameover {
+    font-size: 2em;
+    text-transform: uppercase;
+    animation: shakeHorizontal 0.15s infinite;
+    z-index: 1;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.congrats, .winStatement {
+    color: #3F7D58;
+}
+
+.gameover, .loseStatement {
+    color: red;
+}
+
+.winStatement, .loseStatement {
+    font-size: 3em;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+    animation: shakeHorizontal 0.15s infinite;
+}
+
+.lossCondition {
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.difficultyStatement {
+    text-align: center;
+    font-size: 1.4em;
+    margin: 5px 0;
+}
+
+.difficultyText {
+    text-transform: uppercase;
+}
+
+.finalScoreContainer {
+    margin: 50px 0 50px;
+}
+
+.finalScoreLabel {
+    text-align: center;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.finalScoreDisplay {
+    text-align: center;
+    font-size: 4em;
+    margin: 0;
+}
+
+.finalScoreIncrementor {
+    margin: 0;
+    margin-top: -5px;
+    text-align: center;
+}
+
+.dataContainer {
+    margin: 0 0 30px;
+}
+
+.metaContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 150px;
+}
+
+.metaData {
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+@keyframes shakeHorizontal {
+    0% { 
+        transform: translateX(0);
+    }
+    25% { 
+        transform: translateX(1px);
+    }
+    50% { 
+        transform: translateX(-1px);
+    }
+    75% { 
+        transform: translateX(1px);
+    }
+    100% { 
+        transform: translateX(0);
+    }
+}
+
+.buttonContainer {
+    background-color: black;
+    width: 220px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+}
+
+.buttonContainer:hover {
+    animation: shakeHorizontal 0.15s infinite;
+}
+
+.button {
+    all: unset;
+    background-color: #EC5228;
+    width: 212px;
+    height: 52px;
+    font-size: 2em;
+    vertical-align: 50%;
+    text-align: center;
+    cursor: pointer;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonIcon {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.buttonContainer, .button {
+    clip-path: polygon(
+      0px calc(100% - 16px),
+      4px calc(100% - 16px),
+      4px calc(100% - 8px),
+      8px calc(100% - 8px),
+      8px calc(100% - 4px),
+      16px calc(100% - 4px),
+      16px 100%,
+      calc(100% - 16px) 100%,
+      calc(100% - 16px) calc(100% - 4px),
+      calc(100% - 8px) calc(100% - 4px),
+      calc(100% - 8px) calc(100% - 8px),
+      calc(100% - 4px) calc(100% - 8px),
+      calc(100% - 4px) calc(100% - 16px),
+      100% calc(100% - 16px),
+      100% 16px,
+      calc(100% - 4px) 16px,
+      calc(100% - 4px) 8px,
+      calc(100% - 8px) 8px,
+      calc(100% - 8px) 4px,
+      calc(100% - 16px) 4px,
+      calc(100% - 16px) 0px,
+      16px 0px,
+      16px 4px,
+      8px 4px,
+      8px 8px,
+      4px 8px,
+      4px 16px,
+      0px 16px
+    );
+}

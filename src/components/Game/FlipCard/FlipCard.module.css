@@ -1,7 +1,7 @@
 .flip-card {
     box-sizing: border-box;
-    width: 150px;
-    height: 255px;
+    width: 90px;
+    height: 153px;
     background-color: transparent;
     perspective: 1000px;
     margin: 5px;
@@ -10,8 +10,8 @@
 
 .matched-card {
     box-sizing: border-box;
-    width: 150px;
-    height: 255px;
+    width: 90px;
+    height: 153px;
     margin: 5px;
     display: flex;
     position: relative;
@@ -89,24 +89,23 @@
 
 .typeIcon {
     display: block;
-    width: 40px;
-    height: 40px;
+    width: 26%;
     position: absolute;
 }
 
 .topType {
     top: 12px;
-    left: 12px;
+    left: 8%;
 }
 
 .bottomType {
     bottom: 12px;
-    right: 12px;
+    right: 8%;
 }
 
 .imageIcon {
-    width: 120px;
-    height: 120px;
+    width: 80%;
+    height: 80%;
 }
 
 .blueCard {

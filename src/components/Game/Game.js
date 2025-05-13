@@ -28,22 +28,42 @@ export default function Game() {
         easy: {
             cardCount: 6,
             timer: 120,
-            lives: 4
+            lives: 4,
+            grid: {
+                template: "repeat(3, 1fr) / repeat(4, 1fr)",
+                cardWidth: "150px",
+                cardHeight: "255px"
+            }
         },
         medium: {
             cardCount: 12,
             timer: 120,
-            lives: 6
+            lives: 6,
+            grid: {
+                template: "repeat(3, 1fr) / repeat(8, 1fr)",
+                cardWidth: "150px",
+                cardHeight: "255px"
+            }
         },
         hard: {
             cardCount: 16,
             timer: 120,
-            lives: 8
+            lives: 8,
+            grid: {
+                template: "repeat(4, 1fr) / repeat(8, 1fr)",
+                cardWidth: "112px",
+                cardHeight: "191px"
+            }
         },
         insane: {
-            cardCount: 24,
+            cardCount: 25,
             timer: 60,
-            lives: 6
+            lives: 6,
+            grid: {
+                template: "repeat(4, 1fr) / repeat(10, 1fr)",
+                cardWidth: "90px",
+                cardHeight: "153px"
+            }
         }
     };
 
@@ -159,7 +179,7 @@ export default function Game() {
     };
 
     return (
-        <div>
+        <div className={styles.gameContainer}>
             <div className={styles.timerBar} ref={timerBar}></div>
             <ExitIcon className={styles.exitIcon} onClick={handleExit} />
             <div className={styles.header}>
@@ -173,21 +193,23 @@ export default function Game() {
                 <LifeBar livesLeft={livesLeft} numberOfLives={config[difficulty].lives} />
             </div>
             <div className={styles.cardsContainer}>
-                {shuffledCards.map((cardData, i) => {
+                <div className={styles.flipCardGrid} style={{gridTemplate: config[difficulty].grid.template}}>
+                    {shuffledCards.map((cardData, i) => {
 
-                    const [ firstSelected, secondSelected ] = selectedCards;
-                    const isFlipped = (
-                        firstSelected && firstSelected.imageId === cardData.id.imageId && firstSelected.cardType === cardData.id.cardType && firstSelected.match === cardData.id.match
-                    ) || (
-                        secondSelected && secondSelected.imageId === cardData.id.imageId && secondSelected.cardType === cardData.id.cardType && secondSelected.match === cardData.id.match
-                    );
+                        const [ firstSelected, secondSelected ] = selectedCards;
+                        const isFlipped = (
+                            firstSelected && firstSelected.imageId === cardData.id.imageId && firstSelected.cardType === cardData.id.cardType && firstSelected.match === cardData.id.match
+                        ) || (
+                            secondSelected && secondSelected.imageId === cardData.id.imageId && secondSelected.cardType === cardData.id.cardType && secondSelected.match === cardData.id.match
+                        );
 
-                    const isMatched = matchedCards.find(card => {
-                        return card.imageId === cardData.id.imageId && card.cardType === cardData.id.cardType;
-                    });
+                        const isMatched = matchedCards.find(card => {
+                            return card.imageId === cardData.id.imageId && card.cardType === cardData.id.cardType;
+                        });
 
-                    return <FlipCard cardData={cardData} isMatched={isMatched} isFlipped={isFlipped} selectCard={selectCard} i={i} key={`flipcard-${i}`} setDeckIsDisplayed={i === shuffledCards.length - 1 ? setDeckIsDisplayed : null}/>;
-                })}
+                        return <FlipCard cardData={cardData} isMatched={isMatched} isFlipped={isFlipped} selectCard={selectCard} setDeckIsDisplayed={i === shuffledCards.length - 1 ? setDeckIsDisplayed : null} i={i} sizes={config[difficulty].grid} key={`flipcard-${i}`}/>;
+                    })}
+                </div>
             </div>
         </div>
     );

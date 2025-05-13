@@ -9,10 +9,10 @@ export default function Menu() {
     const difficulties = ["easy", "medium", "hard", "insane"];
 
     const colorMap = {
-        easy: "green",
+        easy: "greenyellow",
         medium: "yellow",
         hard: "orange",
-        insane: "red",
+        insane: "#BF3131",
     }
 
     function handleDifficulty() {
@@ -32,9 +32,6 @@ export default function Menu() {
             </div>
             <div className={styles.buttonContainer}>
                 <Link to="/highscores" className={styles.button}>High Scores</Link>
-            </div>
-            <div className={styles.buttonContainer}>
-                <Link to="/settings" className={styles.button}>Settings</Link>
             </div>
             <p className={styles.devTag}>Made by Karamella</p>
         </div>
